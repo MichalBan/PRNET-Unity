@@ -22,7 +22,7 @@ namespace Assets.Scenes.Menu
 
         void Stats()
         {
-            //SceneManager.LoadScene("StatsScene");
+            SceneManager.LoadScene("StatsScene");
         }
 
         void Exit()
