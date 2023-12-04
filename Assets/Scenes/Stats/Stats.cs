@@ -1,66 +1,53 @@
-using System;
-using System.Net.Http;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Grpc.Core;
 using Grpc.Net.Client;
 using PRNET_Unity;
-using Grpc.Net.Client.Web;
 using Cysharp.Net.Http;
-using UnityEditor.PackageManager;
-using Unity.VisualScripting;
-using static PRNET_Unity.Greeter;
 
 public class Stats : MonoBehaviour
 {
-    public Button ButtonSend, ButtonRequest, ButtonBack;
-    public TMP_InputField InputRequest;
+    public Button ButtonSend, ButtonBack;
+    public TMP_InputField InputText;
     public TextMeshProUGUI Text;
 
-    private GrpcChannel channel;
-    private Greeter.GreeterClient client;
+    private GrpcChannel _channel;
+    private Greeter.GreeterClient _client;
 
     // Start is called before the first frame update
     void Start()
     {
         ButtonSend.onClick.AddListener(Send);
-        ButtonRequest.onClick.AddListener(Request);
         ButtonBack.onClick.AddListener(Back);
-
+        InputText.onValueChanged.AddListener(Limit);
 
         var options = new GrpcChannelOptions();
-        //var handler = new GrpcWebHandler(GrpcWebMode.GrpcWeb, new HttpClientHandler());
         var handler = new YetAnotherHttpHandler();
         handler.Http2Only = true;
         options.HttpHandler = handler;
-        //options.Credentials = ChannelCredentials.Insecure;
         options.DisposeHttpClient = true;
-        channel = GrpcChannel.ForAddress("http://localhost:5076", options);
-        client = new GreeterClient(channel);
+        _channel = GrpcChannel.ForAddress("http://localhost:5076", options);
+        _client = new Greeter.GreeterClient(_channel);
     }
 
-
-    async void SendTutorial()
+    private void Limit(string inputString)
     {
-        var reply = await client.SayHelloAsync(new HelloRequest { Name = InputRequest.text });
-        Text.SetText(reply.Message);
+        if (inputString.Length > 20)
+        {
+            InputText.text = inputString[..20];
+        }
     }
 
     private void OnDestroy()
     {
-        channel.Dispose();
+        _channel.Dispose();
     }
 
-    void Send()
+    async void Send()
     {
-        SendTutorial();
-    }
-
-    void Request()
-    {
-        Text.SetText("Request Clicked\n" + InputRequest.text);
+        var reply = await _client.SayHelloAsync(new HelloRequest { Name = InputText.text });
+        Text.SetText(reply.Value + "\n" + reply.Message);
     }
 
     void Back()
