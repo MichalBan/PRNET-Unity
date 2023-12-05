@@ -1,22 +1,33 @@
 syntax = "proto3";
-
+import "google/protobuf/duration.proto";  
+import "google/protobuf/timestamp.proto";
 option csharp_namespace = "PRNET_Unity";
+package highScores;
 
-package greet;
-
-// The greeting service definition.
-service Greeter {
-  // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply);
+service HighScores {
+  rpc Submit (SubmitRequest) returns (SubmitReply);
+  rpc GetAll (GetAllRequest) returns (stream GetReply);
+  rpc GetMy (GetMyRequest) returns (stream GetReply);
 }
 
-// The request message containing the user's name.
-message HelloRequest {
+message SubmitRequest {
+  string name = 1;
+  google.protobuf.Duration survived_time = 2;
+}
+
+message SubmitReply {
+  bool success = 1;
+}
+
+message GetAllRequest {
+}
+
+message GetMyRequest {
   string name = 1;
 }
 
-// The response message containing the greetings.
-message HelloReply {
-  string message = 1;
-  uint32 value = 2;
+message GetReply {
+  string name = 1;
+  google.protobuf.Duration survived_time = 2;
+  google.protobuf.Timestamp played_date = 3;
 }

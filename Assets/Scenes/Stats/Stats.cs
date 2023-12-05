@@ -2,55 +2,51 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Grpc.Net.Client;
 using PRNET_Unity;
-using Cysharp.Net.Http;
+using Grpc.Core;
 
 public class Stats : MonoBehaviour
 {
-    public Button ButtonSend, ButtonBack;
-    public TMP_InputField InputText;
-    public TextMeshProUGUI Text;
-
-    private GrpcChannel _channel;
-    private Greeter.GreeterClient _client;
+    public Button ButtonGetAll, ButtonGetMy, ButtonBack;
+    public Transform Content;
+    public RecordText RecordPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
-        ButtonSend.onClick.AddListener(Send);
+        ButtonGetAll.onClick.AddListener(GetAll);
+        ButtonGetMy.onClick.AddListener(GetMy);
         ButtonBack.onClick.AddListener(Back);
-        InputText.onValueChanged.AddListener(Limit);
-
-        var options = new GrpcChannelOptions();
-        var handler = new YetAnotherHttpHandler();
-        handler.Http2Only = true;
-        options.HttpHandler = handler;
-        options.DisposeHttpClient = true;
-        _channel = GrpcChannel.ForAddress("http://localhost:5076", options);
-        _client = new Greeter.GreeterClient(_channel);
     }
 
-    private void Limit(string inputString)
+    private void GetAll()
     {
-        if (inputString.Length > 20)
+        var call = HighScoresHandler.Instance.Client.GetAll(new GetAllRequest());
+        SetTextFromStream(call);
+    }
+
+    private void GetMy()
+    {
+        var myNick = PlayerDataHolder.Instance.PlayerNick;
+        var call = HighScoresHandler.Instance.Client.GetMy(new GetMyRequest { Name = myNick });
+        SetTextFromStream(call);
+    }
+
+    private async void SetTextFromStream(AsyncServerStreamingCall<GetReply> call)
+    {
+        for (var i = Content.childCount - 1; i >= 0; --i)
         {
-            InputText.text = inputString[..20];
+            Destroy(Content.GetChild(i).gameObject);
+        }
+
+        Instantiate(RecordPrefab, Content).Init("Nick", "Survived", "Date");
+        await foreach (var response in call.ResponseStream.ReadAllAsync())
+        {
+            Instantiate(RecordPrefab, Content).Init(response);
         }
     }
 
-    private void OnDestroy()
-    {
-        _channel.Dispose();
-    }
-
-    async void Send()
-    {
-        var reply = await _client.SayHelloAsync(new HelloRequest { Name = InputText.text });
-        Text.SetText(reply.Value + "\n" + reply.Message);
-    }
-
-    void Back()
+    private void Back()
     {
         SceneManager.LoadScene("MenuScene");
     }
