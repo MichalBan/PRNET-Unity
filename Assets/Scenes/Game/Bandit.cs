@@ -9,11 +9,12 @@ namespace Assets.Bandits___Pixel_Art.Demo
         public float Damage;
         public float SlashCooldown;
         public float SlashRange;
-
+        public float XpOnDeath;
         private FollowPlayer _followPlayer;
         private Animator _animator;
         private Rigidbody2D _body2d;
         private GameObject _target;
+        LevelSystem playerLevel;
         private float _slashCooldownLeft;
 
         // Use this for initialization
@@ -23,7 +24,7 @@ namespace Assets.Bandits___Pixel_Art.Demo
             _body2d = GetComponent<Rigidbody2D>();
             _target = GameObject.FindGameObjectWithTag("Player");
             _followPlayer = GetComponent<FollowPlayer>();
-
+            playerLevel = _target.GetComponent<LevelSystem>();
             _slashCooldownLeft = 0f;
         }
 
@@ -63,7 +64,9 @@ namespace Assets.Bandits___Pixel_Art.Demo
         {
             _body2d.bodyType = RigidbodyType2D.Static;
             _animator.SetTrigger("Death");
+            playerLevel.GainExperienceFlatRace(XpOnDeath);
             Invoke("Die", 0.25f);
+
         }
 
         void Die()

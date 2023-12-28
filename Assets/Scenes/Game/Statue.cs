@@ -6,10 +6,13 @@ namespace Assets.Scenes.Game
     public class Statue : Character
     {
         public float DamagePerSecond;
+        public float XpOnDeath;
 
         private FollowPlayer _followPlayer;
         private Rigidbody2D _body;
         private Animator _animator;
+        private GameObject _target;
+        LevelSystem playerLevel;
 
         // Start is called before the first frame update
         void Start()
@@ -17,6 +20,8 @@ namespace Assets.Scenes.Game
             _body = GetComponent<Rigidbody2D>();
             _followPlayer = GetComponent<FollowPlayer>();
             _animator = GetComponent<Animator>();
+            _target = GameObject.FindGameObjectWithTag("Player");
+            playerLevel = _target.GetComponent<LevelSystem>();
         }
 
         // Update is called once per frame
@@ -45,6 +50,7 @@ namespace Assets.Scenes.Game
         {
             _body.bodyType = RigidbodyType2D.Static;
             _animator.SetTrigger("Fade");
+            playerLevel.GainExperienceFlatRace(XpOnDeath);
             Invoke("Die", 5.0f);
         }
 

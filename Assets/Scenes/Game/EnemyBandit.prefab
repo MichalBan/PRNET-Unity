@@ -51,9 +51,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthPoints: 25
+  HealRegen: 0
   Damage: 10
   SlashCooldown: 1.2
   SlashRange: 1
+  XpOnDeath: 10
 --- !u!95 &95346456782871180
 Animator:
   serializedVersion: 5

@@ -7,6 +7,9 @@ namespace Assets.Scenes.Game
         public float FireRate;
         public float Damage;
         public float ProjectileSpeed;
+        public float levelDamage;
+        public float levelFireRate;
+        public float levelProjectileSpeed;
 
         public GameObject Projectile;
 
@@ -23,5 +26,14 @@ namespace Assets.Scenes.Game
             spawnedBolt.GetComponent<Rigidbody2D>().velocity = (mouseWorldPos - transform.position).normalized * ProjectileSpeed;
             spawnedBolt.GetComponent<Projectile>().SetDamage(Damage);
         }
+
+        public void IncreaseWeapon()
+        {
+            FireRate += levelFireRate;
+            Damage += levelDamage;
+            ProjectileSpeed += levelProjectileSpeed;
+        }
     }
+
+
 }

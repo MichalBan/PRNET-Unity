@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Assets.Scenes.Game
 {
@@ -14,6 +15,7 @@ namespace Assets.Scenes.Game
         private Movement _movement;
         private Weapon _weapon;
         private Rigidbody2D _body;
+        public TextMeshProUGUI healthText;
 
         // Start is called before the first frame update
         void Start()
@@ -36,6 +38,7 @@ namespace Assets.Scenes.Game
             {
                 _movement.UpdateMovement();
             }
+            healthText.text = Mathf.Round(HealthPoints) + "/" + Mathf.Round(_maxHealth);
         }
 
         public override void OnDamage()
@@ -57,6 +60,12 @@ namespace Assets.Scenes.Game
         public void Die()
         {
             SceneManager.LoadScene("DeathScene");
+        }
+
+        public void IncreaseHealth()
+        {
+            HealthPoints = _maxHealth;
+            _healthBar.GetComponent<Slider>().value = _maxHealth;
         }
     }
 }

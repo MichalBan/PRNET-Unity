@@ -5,6 +5,7 @@ namespace Assets.Scenes.Game
     public abstract class Character : MonoBehaviour
     {
         public float HealthPoints;
+        public float HealRegen;
         public void TakeDamage(float damage)
         {
             if (HealthPoints <= 0)
@@ -27,5 +28,6 @@ namespace Assets.Scenes.Game
         public abstract void OnDeath();
 
         public abstract void OnDamage();
+
     }
 }

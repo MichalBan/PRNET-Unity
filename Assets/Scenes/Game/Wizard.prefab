@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 1436691740004584736}
   - component: {fileID: 2673342318634264698}
   - component: {fileID: 6046130663190029213}
+  - component: {fileID: -6462517431580212784}
   m_Layer: 0
   m_Name: Wizard
   m_TagString: Player
@@ -165,6 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthPoints: 100
+  HealRegen: 0
 --- !u!114 &4049412113427716556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +195,9 @@ MonoBehaviour:
   FireRate: 0.5
   Damage: 10
   ProjectileSpeed: 20
+  levelDamage: 20
+  levelFireRate: 30
+  levelProjectileSpeed: 10
   Projectile: {fileID: 1950287986341994923, guid: 64214865c1f28494ea3a98b77e586634,
     type: 3}
 --- !u!50 &2673342318634264698
@@ -267,6 +272,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 3}
   m_EdgeRadius: 0
+--- !u!114 &-6462517431580212784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2440293883471767439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93a00b3824e2ef44397b356b31988d41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  currentXp: 0
+  requiredXp: 130
+  XpFrontImageBar: {fileID: 0}
+  XpBackImageBar: {fileID: 0}
+  additionMultiplier: 300
+  powerMultiplier: 2
+  divisionMultiplier: 7
 --- !u!1001 &1435327963844801506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -613,12 +638,12 @@ PrefabInstance:
     - target: {fileID: -2540685404709959581, guid: dde2588f5e0bc7b4ab407c1ae99bd5c1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.47670346
+      value: 0.47979978
       objectReference: {fileID: 0}
     - target: {fileID: -2540685404709959581, guid: dde2588f5e0bc7b4ab407c1ae99bd5c1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.22062404
+      value: -0.18471901
       objectReference: {fileID: 0}
     - target: {fileID: -2540685404709959581, guid: dde2588f5e0bc7b4ab407c1ae99bd5c1,
         type: 3}
@@ -1391,6 +1416,9 @@ MonoBehaviour:
   FireRate: 0.5
   Damage: 10
   ProjectileSpeed: 0
+  levelDamage: 0
+  levelFireRate: 0
+  levelProjectileSpeed: 0
   Projectile: {fileID: 0}
 --- !u!114 &7320708107880531782
 MonoBehaviour:
