@@ -1,4 +1,5 @@
-﻿using Assets.Scenes.Game;
+﻿using System;
+using Assets.Scenes.Game;
 using UnityEngine;
 
 namespace Assets.Bandits___Pixel_Art.Demo
@@ -36,10 +37,13 @@ namespace Assets.Bandits___Pixel_Art.Demo
                 _followPlayer.MoveTowardsPlayer();
 
                 _animator.SetInteger("AnimState", 2);
+
+                var scale = _body2d.transform.localScale;
                 if (_body2d.velocity.x > 0)
-                    _body2d.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+                    scale.x = -Math.Abs(scale.x);
                 else if (_body2d.velocity.x < 0)
-                    _body2d.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    scale.x = Math.Abs(scale.x);
+                _body2d.transform.localScale = scale;
 
                 if (_slashCooldownLeft > 0)
                 {
@@ -66,7 +70,6 @@ namespace Assets.Bandits___Pixel_Art.Demo
             _animator.SetTrigger("Death");
             playerLevel.GainExperienceFlatRace(XpOnDeath);
             Invoke("Die", 0.25f);
-
         }
 
         void Die()
@@ -91,7 +94,8 @@ namespace Assets.Bandits___Pixel_Art.Demo
 
         private bool IsInSlashRange()
         {
-            return Vector2.Distance(_target.transform.position, transform.position) < SlashRange;
+            return Vector2.Distance(_target.transform.position, GetComponent<CircleCollider2D>().transform.position) <
+                   SlashRange;
         }
     }
 }

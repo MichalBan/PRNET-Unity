@@ -482,7 +482,6 @@ GameObject:
   - component: {fileID: 288198914}
   - component: {fileID: 288198913}
   - component: {fileID: 288198912}
-  - component: {fileID: 288198916}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -578,19 +577,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &288198916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 288198911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e86a92cc3244e8342a6f8b54e3d24324, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Text: {fileID: 351280127}
 --- !u!1 &306423847
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,6 +2051,7 @@ GameObject:
   - component: {fileID: 1232970295}
   - component: {fileID: 1232970294}
   - component: {fileID: 1232970297}
+  - component: {fileID: 1232970298}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -2134,20 +2121,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9fabdef49cc6340bd2bc8a271eefd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyStatue: {fileID: 5058086333618842451, guid: 7dfbb190b5409394fb5f607a0ea45c4b,
-    type: 3}
-  EnemyBandit: {fileID: 1689866831511430, guid: db36b7f624d209f4490e7e2402d68a53,
-    type: 3}
-  EnemyArcher: {fileID: 0}
-  PowerUpSpeed: {fileID: 4550423024023694860, guid: 80e083bfff5c5184bb7942ebe152af31,
-    type: 3}
-  SpawnAcceleration: 0.3
-  StatueInterval: 25
-  BanditInterval: 4
-  ArcherInterval: 0
-  PowerUpSpeedInterval: 0
-  InitialBandits: 5
-  InitialArchers: 0
+  SpawnInfos:
+  - Enemy: {fileID: 1689866831511430, guid: db36b7f624d209f4490e7e2402d68a53, type: 3}
+    Initial: 5
+    Start: 0
+    End: 0
+    Interval: 4
+    Acceleration: 0.3
+  - Enemy: {fileID: 5058086333618842451, guid: 7dfbb190b5409394fb5f607a0ea45c4b, type: 3}
+    Initial: 1
+    Start: 15
+    End: 0
+    Interval: 25
+    Acceleration: 0.3
+  - Enemy: {fileID: 5058086333618842451, guid: d073ff45defadae4dba47963147e39f2, type: 3}
+    Initial: 0
+    Start: 30
+    End: 0
+    Interval: 10
+    Acceleration: 0.3
+  - Enemy: {fileID: 1689866831511430, guid: 9966e841582666a4a958daae4b3c6c86, type: 3}
+    Initial: 0
+    Start: 45
+    End: 0
+    Interval: 30
+    Acceleration: 0.3
+  - Enemy: {fileID: 4550423024023694860, guid: 80e083bfff5c5184bb7942ebe152af31, type: 3}
+    Initial: 0
+    Start: 0
+    End: 0
+    Interval: 10
+    Acceleration: 0
   SpawnPoints:
   - {fileID: 2045028834}
   - {fileID: 1994990984}
@@ -2157,6 +2161,19 @@ MonoBehaviour:
   - {fileID: 1320776376}
   - {fileID: 1284300343}
   - {fileID: 169353446}
+--- !u!114 &1232970298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232970293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86a92cc3244e8342a6f8b54e3d24324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Text: {fileID: 351280127}
 --- !u!1 &1284300343
 GameObject:
   m_ObjectHideFlags: 0
