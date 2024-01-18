@@ -59,7 +59,7 @@ namespace Assets.Scenes.Game
                 if (Vector2.Distance(spawn.transform.position, _player.transform.position) > 10.0f)
                 {
                     validSpawns.Add(spawn.transform.position);
-                    Debug.Log("Dodano punkt spawnu: " + spawn.transform.position);
+                    
                 }
             }
 

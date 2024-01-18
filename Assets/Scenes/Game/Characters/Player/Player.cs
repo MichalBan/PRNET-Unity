@@ -29,11 +29,19 @@ namespace Assets.Scenes.Game
             _body = GetComponent<Rigidbody2D>();
 
             _weapon.InvokeRepeating("DoFireBolt", 0.0f, _weapon.FireRate);
+
+            
+
         }
 
         // Update is called once per frame
         void Update()
         {
+            if (Input.GetKeyDown("e"))
+            {
+                _weapon.Invoke("DoRocketBolt", 0.0f);
+            }
+
             if (HealthPoints > 0)
             {
                 _movement.UpdateMovement();

@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 2673342318634264698}
   - component: {fileID: 6046130663190029213}
   - component: {fileID: -6462517431580212784}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: Wizard
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -130,6 +130,7 @@ Transform:
   m_Children:
   - {fileID: 6929731829710477553}
   - {fileID: 5538024980071169600}
+  - {fileID: 1612634326894866554}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &3568016436660938091
@@ -167,6 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthPoints: 100
   HealRegen: 0
+  healthText: {fileID: 0}
 --- !u!114 &4049412113427716556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,12 +196,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FireRate: 0.5
   Damage: 10
+  RocketDamage: 100
   ProjectileSpeed: 20
-  levelDamage: 20
-  levelFireRate: 30
-  levelProjectileSpeed: 10
+  levelDamage: 1
+  levelFireRate: 2
+  levelProjectileSpeed: 2
   Projectile: {fileID: 1950287986341994923, guid: 64214865c1f28494ea3a98b77e586634,
     type: 3}
+  Rocket: {fileID: 1797669858794595947, guid: 38e8067eb11eeee49be8db7a71e23ba0, type: 3}
 --- !u!50 &2673342318634264698
 Rigidbody2D:
   serializedVersion: 4
@@ -289,9 +293,85 @@ MonoBehaviour:
   requiredXp: 130
   XpFrontImageBar: {fileID: 0}
   XpBackImageBar: {fileID: 0}
+  levelText: {fileID: 0}
+  xpText: {fileID: 0}
   additionMultiplier: 300
   powerMultiplier: 2
   divisionMultiplier: 7
+--- !u!1001 &251739619254353524
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7944576319349048986}
+    m_Modifications:
+    - target: {fileID: 3563755353492141431, guid: 38e8067eb11eeee49be8db7a71e23ba0,
+        type: 3}
+      propertyPath: m_Name
+      value: RocketSkin
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366514799606766866, guid: 38e8067eb11eeee49be8db7a71e23ba0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 72.91127
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366514799606766866, guid: 38e8067eb11eeee49be8db7a71e23ba0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 23.524343
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366514799606766866, guid: 38e8067eb11eeee49be8db7a71e23ba0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366514799606766866, guid: 38e8067eb11eeee49be8db7a71e23ba0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366514799606766866, guid: 38e8067eb11eeee49be8db7a71e23ba0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366514799606766866, guid: 38e8067eb11eeee49be8db7a71e23ba0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366514799606766866, guid: 38e8067eb11eeee49be8db7a71e23ba0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366514799606766866, guid: 38e8067eb11eeee49be8db7a71e23ba0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366514799606766866, guid: 38e8067eb11eeee49be8db7a71e23ba0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366514799606766866, guid: 38e8067eb11eeee49be8db7a71e23ba0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 38e8067eb11eeee49be8db7a71e23ba0, type: 3}
+--- !u!4 &1612634326894866554 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1522042649939758606, guid: 38e8067eb11eeee49be8db7a71e23ba0,
+    type: 3}
+  m_PrefabInstance: {fileID: 251739619254353524}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1435327963844801506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1415,11 +1495,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FireRate: 0.5
   Damage: 10
+  RocketDamage: 0
   ProjectileSpeed: 0
   levelDamage: 0
   levelFireRate: 0
   levelProjectileSpeed: 0
   Projectile: {fileID: 0}
+  Rocket: {fileID: 0}
 --- !u!114 &7320708107880531782
 MonoBehaviour:
   m_ObjectHideFlags: 0
