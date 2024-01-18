@@ -22,7 +22,7 @@ public class HighScoresHandler : MonoBehaviour
         handler.Http2Only = true;
         options.HttpHandler = handler;
         options.DisposeHttpClient = true;
-        _channel = GrpcChannel.ForAddress("http://localhost:5076", options);
+        _channel = GrpcChannel.ForAddress("https://prnet-server.azurewebsites.net/", options);
         Client = new HighScores.HighScoresClient(_channel);
 
         Instance = this;
