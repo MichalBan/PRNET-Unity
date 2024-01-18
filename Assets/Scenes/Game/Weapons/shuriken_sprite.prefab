@@ -23,6 +23,16 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Projectile
       objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: cf00bd8f703819b4d9861591ac74848f,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: cf00bd8f703819b4d9861591ac74848f,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1869315837
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: cf00bd8f703819b4d9861591ac74848f,
         type: 3}
       propertyPath: m_LocalPosition.x

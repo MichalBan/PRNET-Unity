@@ -169,6 +169,9 @@ MonoBehaviour:
   HealthPoints: 100
   HealRegen: 0
   MovementSpeed: 0
+  qCooldown: 10
+  eCooldown: 10
+  rCooldown: 10
   healthText: {fileID: 0}
 --- !u!114 &4049412113427716556
 MonoBehaviour:
