@@ -37,20 +37,27 @@ namespace Assets.Scenes.Game
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown("e"))
-            {
-                _weapon.Invoke("DoRocketBolt", 0.0f);
-            }
 
             if (Input.GetKeyDown("q"))
             {
                 _weapon.Invoke("DoShuriken", 0.0f);
             }
 
+            if (Input.GetKeyDown("e"))
+            {
+                _weapon.Invoke("DoRocketBolt", 0.0f);
+            }
+
+            if (Input.GetKeyDown("r"))
+            {
+                _weapon.Invoke("DoFog", 0.0f);
+            }
+
             if (HealthPoints > 0)
             {
                 _movement.UpdateMovement();
             }
+
             healthText.text = Mathf.Round(HealthPoints) + "/" + Mathf.Round(_maxHealth);
         }
 

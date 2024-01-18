@@ -6,6 +6,7 @@ namespace Assets.Scenes.Game
     {
         public float HealthPoints;
         public float HealRegen;
+        public float MovementSpeed;
         public void TakeDamage(float damage)
         {
             if (HealthPoints <= 0)
@@ -25,6 +26,10 @@ namespace Assets.Scenes.Game
             }
         }
 
+        public void Slow(float slow)
+        {
+            MovementSpeed = MovementSpeed * (1 - slow);
+        }
         public abstract void OnDeath();
 
         public abstract void OnDamage();

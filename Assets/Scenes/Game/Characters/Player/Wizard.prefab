@@ -168,6 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthPoints: 100
   HealRegen: 0
+  MovementSpeed: 0
   healthText: {fileID: 0}
 --- !u!114 &4049412113427716556
 MonoBehaviour:
@@ -197,6 +198,7 @@ MonoBehaviour:
   FireRate: 0.5
   Damage: 10
   RocketDamage: 100
+  FogDamage: 10
   ShurikenDamage: 30
   ProjectileSpeed: 20
   levelDamage: 1
@@ -206,6 +208,7 @@ MonoBehaviour:
     type: 3}
   Rocket: {fileID: 1797669858794595947, guid: 38e8067eb11eeee49be8db7a71e23ba0, type: 3}
   Shuriken: {fileID: 341163113582314499, guid: 55b7e302c22635444a00e3ed3bdfb838, type: 3}
+  Fog: {fileID: 7694037311680572570, guid: f80f360b9d4a9394792f8a0707085343, type: 3}
 --- !u!50 &2673342318634264698
 Rigidbody2D:
   serializedVersion: 4
@@ -1498,6 +1501,7 @@ MonoBehaviour:
   FireRate: 0.5
   Damage: 10
   RocketDamage: 0
+  FogDamage: 0
   ShurikenDamage: 0
   ProjectileSpeed: 0
   levelDamage: 0
@@ -1506,6 +1510,7 @@ MonoBehaviour:
   Projectile: {fileID: 0}
   Rocket: {fileID: 0}
   Shuriken: {fileID: 0}
+  Fog: {fileID: 0}
 --- !u!114 &7320708107880531782
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ namespace Assets.Scenes.Game
         public float FireRate;
         public float Damage;
         public float RocketDamage;
+        public float FogDamage;
         public float ShurikenDamage;
         public float ProjectileSpeed;
         public float levelDamage;
@@ -17,6 +18,7 @@ namespace Assets.Scenes.Game
         public GameObject Projectile;
         public GameObject Rocket;
         public GameObject Shuriken;
+        public GameObject Fog;
         
 
         void DoFireBolt()
@@ -60,12 +62,10 @@ namespace Assets.Scenes.Game
                 float y = mouseWorldPos.y - transform.position.y;
                 float angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
 
-                // Dostosuj k¹t o 90 stopni dla ka¿dego shurikena
                 angle += i * 90.0f;
 
                 var rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
-                // Delikatnie dostosuj pozycjê dla ka¿dego shurikena
                 var offset = new Vector3(UnityEngine.Random.Range(-1.0f, 1.0f), UnityEngine.Random.Range(-0.2f, 0.2f), 0f);
                 var position = gameObject.transform.position + offset;
 
@@ -75,7 +75,23 @@ namespace Assets.Scenes.Game
             }
         }
 
+        void DoFog()
+        {
+            var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+            float x = mouseWorldPos.x - transform.position.x;
+            float y = mouseWorldPos.y - transform.position.y;
+            float angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
+
+
+            var rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            var position = gameObject.transform.position;
+
+            var spawnedFog = Instantiate(Fog, position, rotation);
+            spawnedFog.GetComponent<Rigidbody2D>().velocity = (mouseWorldPos - transform.position).normalized * ProjectileSpeed / 2;
+            spawnedFog.GetComponent<Fog>().SetDamage(FogDamage);
+            Destroy(spawnedFog, 5.0f);
+        }
 
         public void IncreaseWeapon()
         {

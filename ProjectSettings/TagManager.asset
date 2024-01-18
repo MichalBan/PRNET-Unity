@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Projectile
   - Enemy
+  - Border
   layers:
   - Default
   - TransparentFX
@@ -24,15 +25,15 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Fog
   - BlastLayer
   - RocketLayer
   - Layer 1
   - Layer 2
   - Layer 3
   - PlayerCharacter
-  - 
-  - 
+  - Border
+  - Enemy
   - 
   - 
   - 

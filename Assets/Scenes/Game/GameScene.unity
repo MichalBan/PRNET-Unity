@@ -904,9 +904,9 @@ GameObject:
   - component: {fileID: 876745600}
   - component: {fileID: 876745599}
   - component: {fileID: 876745598}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: ColliderTilemap
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
