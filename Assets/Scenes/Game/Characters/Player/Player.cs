@@ -42,6 +42,11 @@ namespace Assets.Scenes.Game
                 _weapon.Invoke("DoRocketBolt", 0.0f);
             }
 
+            if (Input.GetKeyDown("q"))
+            {
+                _weapon.Invoke("DoShuriken", 0.0f);
+            }
+
             if (HealthPoints > 0)
             {
                 _movement.UpdateMovement();
