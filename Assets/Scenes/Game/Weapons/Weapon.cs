@@ -15,6 +15,7 @@ namespace Assets.Scenes.Game
 
         public GameObject Projectile;
         public GameObject Rocket;
+        
 
         void DoFireBolt()
         {
@@ -39,7 +40,7 @@ namespace Assets.Scenes.Game
             float y = mouseWorldPos.y - transform.position.y;
             float angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
             var rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-            var position = gameObject.transform.position + new Vector3(0f, 0.7f, 0f);
+            var position = gameObject.transform.position + new Vector3(0f, 0.0f, 0f);
 
             var spawnedBolt = Instantiate(Rocket, position, rotation);
             spawnedBolt.GetComponent<Rigidbody2D>().velocity = (mouseWorldPos - transform.position).normalized * ProjectileSpeed/2 ;
