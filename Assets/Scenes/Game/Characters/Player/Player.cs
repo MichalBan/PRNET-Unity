@@ -10,6 +10,9 @@ namespace Assets.Scenes.Game
     public class Player : Character
     {
         private GameObject _healthBar;
+        private GameObject _Qbar;
+        private GameObject _Ebar;
+        private GameObject _Rbar;
         private float _maxHealth;
         private Animator _anim;
         private Movement _movement;
@@ -18,9 +21,9 @@ namespace Assets.Scenes.Game
         public float qCooldown;
         public float eCooldown;
         public float rCooldown;
-        private float qCooldown_T;
-        private float eCooldown_T;
-        private float rCooldown_T;
+        public float qCooldown_T = 0f;
+        public float eCooldown_T = 0f;
+        public float rCooldown_T = 0f;
         private bool qReady = true;
         private bool eReady = true;
         private bool rReady = true;
@@ -32,6 +35,14 @@ namespace Assets.Scenes.Game
             _maxHealth = HealthPoints;
             _healthBar = GameObject.Find("HealthBar");
             _healthBar.GetComponent<Slider>().value = HealthPoints;
+
+            _Qbar = GameObject.Find("Q");
+            _Qbar.GetComponent<Slider>().value = qCooldown_T;
+            _Ebar = GameObject.Find("E");
+            _Ebar.GetComponent<Slider>().value = eCooldown_T;
+            _Rbar = GameObject.Find("R");
+            _Rbar.GetComponent<Slider>().value = rCooldown_T;
+
             _anim = GetComponent<Animator>();
             _movement = GetComponent<Movement>();
             _weapon = GetComponent<Weapon>();
@@ -48,7 +59,9 @@ namespace Assets.Scenes.Game
         // Update is called once per frame
         void Update()
         {
-
+            _Qbar.GetComponent<Slider>().value = qCooldown_T / qCooldown;
+            _Ebar.GetComponent<Slider>().value = eCooldown_T / eCooldown;
+            _Rbar.GetComponent<Slider>().value = rCooldown_T / rCooldown;
             if (Input.GetKeyDown("q") && qReady)
             {
                 _weapon.Invoke("DoShuriken", 0.0f);
